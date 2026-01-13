@@ -7,6 +7,7 @@ import { Trash2, ShoppingBag, Heart, Shield, Clock, Award } from 'lucide-react';
 import { Link } from 'wouter';
 import Header from '@/components/Header';
 import CouponInput from '@/components/CouponInput';
+import { CartItemSkeleton, CartSummarySkeleton } from '@/components/Skeletons';
 import { Button } from '@/components/ui/button';
 import { useApp } from '@/contexts/AppContext';
 import { courses, Coupon } from '@/data/mocks';
@@ -14,7 +15,7 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
 export default function CartPage() {
-  const { cart, removeFromCart, toggleWishlist, wishlist, getCartTotal } = useApp();
+  const { cart, removeFromCart, toggleWishlist, wishlist, getCartTotal, isLoading } = useApp();
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
   
   const cartItems = cart.map(id => courses.find(c => c.id === id)).filter((c): c is NonNullable<typeof c> => c !== undefined);
@@ -42,6 +43,28 @@ export default function CartPage() {
     }
     toast.success('Movido a lista de deseos');
   };
+
+  // Estado de carga con skeletons
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="container py-12">
+          <div className="h-10 w-64 bg-muted/50 rounded-lg mb-8 animate-pulse" />
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-4">
+              <div className="h-4 w-32 bg-muted/50 rounded mb-4 animate-pulse" />
+              <CartItemSkeleton />
+              <CartItemSkeleton />
+            </div>
+            <div className="lg:col-span-1">
+              <CartSummarySkeleton />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (cart.length === 0) {
     return (
