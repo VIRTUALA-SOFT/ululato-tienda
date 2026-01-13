@@ -185,16 +185,13 @@ export default function Home() {
               </p>
 
               <div className="flex items-center gap-4 pt-4">
-                <Button
-                  size="lg"
-                  className="btn-premium text-lg px-8 py-6 rounded-xl"
-                  asChild
+                <Link 
+                  href={heroSlides[currentSlide].link}
+                  className="btn-premium text-lg px-8 py-6 rounded-xl inline-flex items-center justify-center gap-2"
                 >
-                  <Link href={heroSlides[currentSlide].link}>
-                    {heroSlides[currentSlide].cta}
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
+                  {heroSlides[currentSlide].cta}
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"
@@ -299,16 +296,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 pt-4">
-                  <Button
-                    size="lg"
-                    className="btn-premium text-lg px-8 py-6 rounded-xl"
-                    asChild
+                  <Link 
+                    href={`/course/${wayuuCourse.id}`}
+                    className="btn-premium text-lg px-8 py-6 rounded-xl inline-flex items-center justify-center gap-2"
                   >
-                    <Link href={`/course/${wayuuCourse.id}`}>
-                      Comenzar Aprendizaje
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Link>
-                  </Button>
+                    Comenzar Aprendizaje
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Link>
                   <div className="text-right">
                     <div className="text-3xl font-bold text-[#FFD700]">${wayuuCourse.price}</div>
                     <div className="text-sm text-muted-foreground line-through">${wayuuCourse.originalPrice}</div>
