@@ -9,6 +9,7 @@ import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { useApp } from '@/contexts/AppContext';
 import { cn } from '@/lib/utils';
+import LazyImage from './LazyImage';
 
 interface CourseCardProps {
   course: Course;
@@ -40,10 +41,11 @@ export default function CourseCard({ course, className }: CourseCardProps) {
       )}>
         {/* Thumbnail */}
         <div className="relative aspect-video overflow-hidden bg-muted">
-          <img
+          <LazyImage
             src={course.thumbnail}
             alt={course.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full group-hover:scale-105 transition-transform duration-300"
+            aspectRatio="video"
           />
           
           {/* Badges */}

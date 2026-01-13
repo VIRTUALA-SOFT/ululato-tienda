@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useRoute } from 'wouter';
 import { Play, CheckCircle2, Circle, Clock, BarChart, Award, Users } from 'lucide-react';
 import Header from '@/components/Header';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -56,6 +57,14 @@ export default function CoursePage() {
       {/* Encabezado del Curso */}
       <div className="bg-[#003366] border-b-4 border-[#FFD700]">
         <div className="container py-8">
+          <Breadcrumbs 
+            items={[
+              { label: 'Cursos', href: '/cursos' },
+              { label: course.category, href: `/categoria/${course.category.toLowerCase()}` },
+              { label: course.title }
+            ]}
+            className="mb-6 text-white/70"
+          />
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-4">
               <h1 className="text-4xl font-bold text-white text-display">{course.title}</h1>

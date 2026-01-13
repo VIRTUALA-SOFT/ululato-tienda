@@ -51,10 +51,8 @@ export default function LoginPage() {
           className="w-full max-w-md mx-auto"
         >
           {/* Logo */}
-          <Link href="/">
-            <a className="inline-block mb-8">
-              <Logo />
-            </a>
+          <Link href="/" className="inline-block mb-8">
+            <Logo />
           </Link>
 
           {/* Header */}
@@ -88,11 +86,9 @@ export default function LoginPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-sm font-medium">Contraseña</label>
-                <Link href="/recuperar-contrasena">
-                  <a className="text-sm text-[#FFD700] hover:underline">
-                    ¿Olvidaste tu contraseña?
-                  </a>
-                </Link>
+                <Link href="/recuperar-contrasena" className="text-sm text-[#FFD700] hover:underline">
+                ¿Olvidaste tu contraseña?
+              </Link>
               </div>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -176,10 +172,8 @@ export default function LoginPage() {
           {/* Sign Up Link */}
           <p className="mt-8 text-center text-muted-foreground">
             ¿No tienes una cuenta?{' '}
-            <Link href="/registro">
-              <a className="text-[#FFD700] font-semibold hover:underline">
-                Regístrate gratis
-              </a>
+            <Link href="/registro" className="text-[#FFD700] font-semibold hover:underline">
+              Regístrate gratis
             </Link>
           </p>
         </motion.div>

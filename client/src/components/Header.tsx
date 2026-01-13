@@ -15,6 +15,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from './ui/tooltip';
 import { useApp } from '@/contexts/AppContext';
 import { currentUser, courses } from '@/data/mocks';
 import LanguageSelector from './LanguageSelector';
@@ -155,16 +160,23 @@ export default function Header() {
             </Link>
 
             {/* Carrito */}
-            <Link href="/carrito">
-              <Button variant="ghost" size="icon" className="relative text-white hover:text-[#FFD700] hover:bg-white/10">
-                <ShoppingCart className="w-5 h-5" />
-                {cart.length > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-[#DC143C] text-white text-xs border-2 border-[#003366]">
-                    {cart.length}
-                  </Badge>
-                )}
-              </Button>
-            </Link>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="/carrito">
+                  <Button variant="ghost" size="icon" className="relative text-white hover:text-[#FFD700] hover:bg-white/10">
+                    <ShoppingCart className="w-5 h-5" />
+                    {cart.length > 0 && (
+                      <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-[#DC143C] text-white text-xs border-2 border-[#003366]">
+                        {cart.length}
+                      </Badge>
+                    )}
+                  </Button>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="bg-card border-2 border-[#FFD700]">
+                <p>Carrito de compras {cart.length > 0 && `(${cart.length} ${cart.length === 1 ? 'curso' : 'cursos'})`}</p>
+              </TooltipContent>
+            </Tooltip>
 
             {/* Selector de Idioma */}
             <LanguageSelector className="text-white" />

@@ -6,6 +6,7 @@ import { useState, useMemo } from 'react';
 import { useRoute } from 'wouter';
 import { Code, Briefcase, Palette, TrendingUp, BookOpen, DollarSign, Globe, Filter } from 'lucide-react';
 import Header from '@/components/Header';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import CourseCard from '@/components/CourseCard';
 import CourseFilters from '@/components/CourseFilters';
 import { Button } from '@/components/ui/button';
@@ -133,6 +134,13 @@ export default function CategoryPage() {
       {/* Hero de Categoría */}
       <section className="bg-[#003366] border-b-4 border-[#FFD700] py-16">
         <div className="container">
+          <Breadcrumbs 
+            items={[
+              { label: 'Categorías', href: '/categorias' },
+              { label: category.name }
+            ]}
+            className="mb-6 text-white/70"
+          />
           <div className="flex items-center gap-4 mb-4">
             <div className="p-4 bg-[#FFD700] rounded-lg">
               <CategoryIcon className="w-10 h-10 text-black" />

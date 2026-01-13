@@ -470,44 +470,138 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-20">
-        <div className="container">
+      {/* Categories - Premium Redesign */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Decorations */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FFD700]/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#003366]/10 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold font-display mb-4">Explora por Categoría</h2>
-            <p className="text-xl text-muted-foreground">
-              Encuentra el camino de aprendizaje perfecto para ti
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-sm font-medium mb-6"
+            >
+              <Target className="w-4 h-4" />
+              Encuentra tu camino
+            </motion.span>
+            <h2 className="text-5xl md:text-6xl font-bold font-display mb-6">
+              Explora por{' '}
+              <span className="relative">
+                <span className="relative z-10 gradient-text">Categoría</span>
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
+                  <path d="M2 10C50 2 150 2 198 10" stroke="#FFD700" strokeWidth="3" strokeLinecap="round"/>
+                </svg>
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Cada categoría es un universo de posibilidades. Elige la tuya y comienza tu transformación.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {categories.map((category, index) => (
+          {/* Categories Grid - Premium Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.slice(0, 4).map((category, index) => (
               <motion.div
                 key={category.slug}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.05 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
+                className="group"
               >
-                <Link href={`/categoria/${category.slug}`}>
-                  <a className="block p-6 rounded-xl bg-card border border-border hover:border-[#FFD700] hover:bg-[#FFD700]/5 transition-all text-center group">
-                    <div className="text-3xl mb-3">{category.icon}</div>
-                    <div className="font-semibold group-hover:text-[#FFD700] transition-colors">
-                      {category.name}
+                <Link href={`/categoria/${category.slug}`} className="block h-full">
+                  <div className="relative h-full p-8 rounded-2xl bg-gradient-to-br from-card via-card to-card/50 border-2 border-border hover:border-[#FFD700] transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-[#FFD700]/10">
+                    {/* Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/0 via-[#FFD700]/0 to-[#FFD700]/0 group-hover:from-[#FFD700]/5 group-hover:via-[#FFD700]/10 group-hover:to-[#FFD700]/5 transition-all duration-500" />
+                    
+                    {/* Icon Container */}
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#FFD700]/20 to-[#FFD700]/5 border border-[#FFD700]/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <span className="text-4xl">{category.icon}</span>
+                      </div>
+                      {/* Floating particles */}
+                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#FFD700]/50 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity" />
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
-                      {category.courseCount} cursos
+                    
+                    {/* Content */}
+                    <div className="relative">
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-[#FFD700] transition-colors duration-300">
+                        {category.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                        {category.slug === 'desarrollo' && 'Domina el código y construye el futuro digital'}
+                        {category.slug === 'negocios' && 'Lidera con visión y estrategia empresarial'}
+                        {category.slug === 'diseno' && 'Crea experiencias visuales memorables'}
+                        {category.slug === 'marketing' && 'Conecta marcas con audiencias globales'}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-[#FFD700]">
+                          {category.courseCount} cursos
+                        </span>
+                        <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#FFD700] group-hover:translate-x-1 transition-all duration-300" />
+                      </div>
                     </div>
-                  </a>
+                  </div>
                 </Link>
               </motion.div>
             ))}
           </div>
+
+          {/* Second Row - Smaller Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+            {categories.slice(4).map((category, index) => (
+              <motion.div
+                key={category.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Link href={`/categoria/${category.slug}`} className="block">
+                  <div className="relative p-6 rounded-2xl bg-card border-2 border-border hover:border-[#FFD700] transition-all duration-500 overflow-hidden group-hover:shadow-xl group-hover:shadow-[#FFD700]/10">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#FFD700]/20 to-[#FFD700]/5 border border-[#FFD700]/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-3xl">{category.icon}</span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold group-hover:text-[#FFD700] transition-colors">
+                          {category.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {category.courseCount} cursos disponibles
+                        </p>
+                      </div>
+                      <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#FFD700] group-hover:translate-x-1 transition-all" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Link href="/categorias" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] font-medium hover:bg-[#FFD700]/20 transition-colors">
+              Ver todas las categorías
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 

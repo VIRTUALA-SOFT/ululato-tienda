@@ -201,10 +201,8 @@ export default function RegisterPage() {
           className="w-full max-w-md mx-auto"
         >
           {/* Logo */}
-          <Link href="/">
-            <a className="inline-block mb-8">
-              <Logo />
-            </a>
+          <Link href="/" className="inline-block mb-8">
+            <Logo />
           </Link>
 
           {/* Progress Steps */}
@@ -456,13 +454,9 @@ export default function RegisterPage() {
                     />
                     <label htmlFor="terms" className="text-sm text-muted-foreground cursor-pointer">
                       Acepto los{' '}
-                      <Link href="/terminos">
-                        <a className="text-[#FFD700] hover:underline">Términos de Servicio</a>
-                      </Link>
+                      <Link href="/terminos" className="text-[#FFD700] hover:underline">Términos de Servicio</Link>
                       {' '}y la{' '}
-                      <Link href="/privacidad">
-                        <a className="text-[#FFD700] hover:underline">Política de Privacidad</a>
-                      </Link>
+                      <Link href="/privacidad" className="text-[#FFD700] hover:underline">Política de Privacidad</Link>
                     </label>
                   </div>
                   <div className="flex items-start gap-3">
@@ -508,10 +502,8 @@ export default function RegisterPage() {
           {/* Login Link */}
           <p className="mt-8 text-center text-muted-foreground">
             ¿Ya tienes una cuenta?{' '}
-            <Link href="/login">
-              <a className="text-[#FFD700] font-semibold hover:underline">
-                Inicia sesión
-              </a>
+            <Link href="/login" className="text-[#FFD700] font-semibold hover:underline">
+              Inicia sesión
             </Link>
           </p>
         </motion.div>
