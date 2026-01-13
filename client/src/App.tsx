@@ -19,6 +19,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ForumPage from "./pages/ForumPage";
 import BlogPage from "./pages/BlogPage";
+import ComparePage from "./pages/ComparePage";
 import {
   EventosPage,
   EmbajadoresPage,
@@ -46,6 +47,8 @@ function Router() {
       <Route path={"/instructor/dashboard"} component={InstructorDashboard} />
       <Route path={"/categoria/:slug"} component={CategoryPage} />
       <Route path={"/buscar"} component={SearchPage} />
+      <Route path={"/comparar"} component={ComparePage} />
+      <Route path={"/compare"} component={ComparePage} />
       <Route path={"/perfil"} component={ProfilePage} />
       <Route path={"/profile"} component={ProfilePage} />
       

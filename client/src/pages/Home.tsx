@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import CourseCard from '@/components/CourseCard';
 import CourseFilters from '@/components/CourseFilters';
 import WeavingAnimation from '@/components/WeavingAnimation';
+import RecommendationsSection from '@/components/RecommendationEngine';
 import { Button } from '@/components/ui/button';
 import { courses, categories, testimonials, stats } from '@/data/mocks';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -424,6 +425,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Recommendations */}
+      <RecommendationsSection />
 
       {/* Testimonials */}
       <section className="py-20 bg-gradient-to-b from-[#003366]/20 to-transparent">

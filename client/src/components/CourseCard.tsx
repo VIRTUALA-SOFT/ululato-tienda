@@ -1,8 +1,10 @@
 /**
  * Neo-Brutalism Dark Edition: Tarjeta de curso con bordes gruesos, efectos glow
  * Muestra thumbnail, título, instructor, calificación, precio con acentos dorados
+ * Incluye vista previa de video en hover
  */
-import { Star, Heart, Users } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Star, Heart, Users, Play, Volume2, VolumeX } from 'lucide-react';
 import { Link } from 'wouter';
 import { Course } from '@/data/mocks';
 import { Button } from './ui/button';
@@ -10,46 +12,203 @@ import { Badge } from './ui/badge';
 import { useApp } from '@/contexts/AppContext';
 import { cn } from '@/lib/utils';
 import LazyImage from './LazyImage';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface CourseCardProps {
   course: Course;
   className?: string;
+  enableVideoPreview?: boolean;
 }
 
-export default function CourseCard({ course, className }: CourseCardProps) {
+// Sample preview videos for demo (in production, each course would have its own preview)
+const previewVideos: Record<string, string> = {
+  '1': 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+  '2': 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+  '3': 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+  '4': 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+  '5': 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+  '6': 'https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+  '7': 'https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
+};
+
+export default function CourseCard({ course, className, enableVideoPreview = true }: CourseCardProps) {
   const { wishlist, toggleWishlist, addToCart, cart } = useApp();
   const isInWishlist = wishlist.includes(course.id);
   const isInCart = cart.includes(course.id);
+  
+  const [isHovering, setIsHovering] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     addToCart(course.id);
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     toggleWishlist(course.id);
   };
 
+  const handleToggleMute = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsMuted(!isMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    if (enableVideoPreview) {
+      // Delay video start to avoid loading on quick hovers
+      hoverTimeoutRef.current = setTimeout(() => {
+        setShowVideo(true);
+      }, 500);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setShowVideo(false);
+    setVideoLoaded(false);
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  useEffect(() => {
+    if (showVideo && videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay failed, probably due to browser restrictions
+      });
+    }
+  }, [showVideo]);
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const discount = Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100);
+  const previewUrl = previewVideos[course.id] || previewVideos['1'];
 
   return (
     <Link href={`/course/${course.id}`}>
-      <a className={cn(
-        "group block bg-card border-2 border-border rounded-lg overflow-hidden transition-all duration-300 hover:border-[#FFD700] hover:shadow-xl hover:shadow-[#FFD700]/20 hover:-translate-y-1",
-        className
-      )}>
-        {/* Thumbnail */}
+      <div 
+        className={cn(
+          "group block bg-card border-2 border-border rounded-lg overflow-hidden transition-all duration-300 hover:border-[#FFD700] hover:shadow-xl hover:shadow-[#FFD700]/20 hover:-translate-y-1 cursor-pointer",
+          className
+        )}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Thumbnail / Video Preview */}
         <div className="relative aspect-video overflow-hidden bg-muted">
+          {/* Static Image */}
           <LazyImage
             src={course.thumbnail}
             alt={course.title}
-            className="w-full h-full group-hover:scale-105 transition-transform duration-300"
+            className={cn(
+              "w-full h-full transition-all duration-500",
+              showVideo && videoLoaded ? "opacity-0 scale-110" : "opacity-100 group-hover:scale-105"
+            )}
             aspectRatio="video"
           />
           
+          {/* Video Preview */}
+          <AnimatePresence>
+            {showVideo && enableVideoPreview && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
+              >
+                <video
+                  ref={videoRef}
+                  src={previewUrl}
+                  muted={isMuted}
+                  loop
+                  playsInline
+                  onLoadedData={() => setVideoLoaded(true)}
+                  className={cn(
+                    "w-full h-full object-cover transition-opacity duration-300",
+                    videoLoaded ? "opacity-100" : "opacity-0"
+                  )}
+                />
+                
+                {/* Video Loading Indicator */}
+                {!videoLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                    <div className="w-10 h-10 border-3 border-[#FFD700] border-t-transparent rounded-full animate-spin" />
+                  </div>
+                )}
+                
+                {/* Video Controls Overlay */}
+                {videoLoaded && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                  >
+                    {/* Mute Toggle */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute bottom-3 left-3 bg-black/50 hover:bg-black/70 text-white w-8 h-8"
+                      onClick={handleToggleMute}
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-4 h-4" />
+                      ) : (
+                        <Volume2 className="w-4 h-4" />
+                      )}
+                    </Button>
+                    
+                    {/* Preview Label */}
+                    <div className="absolute bottom-3 right-3 flex items-center gap-1 px-2 py-1 rounded bg-black/70 text-white text-xs font-medium">
+                      <Play className="w-3 h-3 fill-current" />
+                      Vista previa
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          {/* Play Icon on Hover (before video loads) */}
+          <AnimatePresence>
+            {isHovering && !showVideo && enableVideoPreview && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="absolute inset-0 flex items-center justify-center bg-black/30"
+              >
+                <div className="w-14 h-14 rounded-full bg-[#FFD700] flex items-center justify-center shadow-lg">
+                  <Play className="w-6 h-6 text-black fill-black ml-1" />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
           {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-2">
+          <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
             {course.isBestseller && (
               <Badge className="bg-[#FFD700] text-black font-bold border-2 border-black">
                 Más Vendido
@@ -71,7 +230,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white"
+            className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white z-10"
             onClick={handleToggleWishlist}
           >
             <Heart
@@ -147,7 +306,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
             )}
           </div>
         </div>
-      </a>
+      </div>
     </Link>
   );
 }
