@@ -4,7 +4,7 @@
  */
 import { useState } from 'react';
 import { Trash2, ShoppingBag, Heart, Shield, Clock, Award } from 'lucide-react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import Header from '@/components/Header';
 import CouponInput from '@/components/CouponInput';
 import { CartItemSkeleton, CartSummarySkeleton } from '@/components/Skeletons';
@@ -15,6 +15,7 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
 export default function CartPage() {
+  const [, navigate] = useLocation();
   const { cart, removeFromCart, toggleWishlist, wishlist, getCartTotal, isLoading } = useApp();
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
   
@@ -126,17 +127,23 @@ export default function CartPage() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-card border-2 border-border rounded-xl p-6 flex gap-6 hover:border-[#FFD700]/50 transition-all group"
               >
-                <Link href={`/course/${course.id}`} className="flex-shrink-0">
+                <div 
+                  onClick={() => navigate(`/course/${course.id}`)}
+                  className="flex-shrink-0 cursor-pointer"
+                >
                   <img
                     src={course.thumbnail}
                     alt={course.title}
                     className="w-40 h-24 object-cover rounded-lg border border-border group-hover:border-[#FFD700]/50 transition-colors"
                   />
-                </Link>
+                </div>
                 <div className="flex-1 space-y-2">
-                  <Link href={`/course/${course.id}`} className="font-semibold text-lg hover:text-[#FFD700] transition-colors line-clamp-2 block">
+                  <span 
+                    onClick={() => navigate(`/course/${course.id}`)}
+                    className="font-semibold text-lg hover:text-[#FFD700] transition-colors line-clamp-2 block cursor-pointer"
+                  >
                     {course.title}
-                  </Link>
+                  </span>
                   <p className="text-sm text-muted-foreground">Por {course.instructor.name}</p>
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-1">
