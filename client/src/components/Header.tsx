@@ -211,6 +211,11 @@ export default function Header() {
                   <p className="text-sm text-muted-foreground">{currentUser.email}</p>
                 </div>
                 <DropdownMenuItem asChild>
+                  <Link href="/perfil">
+                    <a className="w-full px-3 py-2">Mi Perfil</a>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/mi-aprendizaje">
                     <a className="w-full px-3 py-2">Mi Aprendizaje</a>
                   </Link>

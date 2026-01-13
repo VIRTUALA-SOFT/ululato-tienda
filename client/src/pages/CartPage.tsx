@@ -1,19 +1,33 @@
 /**
- * Neo-Brutalism Dark Edition: Página de carrito de compras
- * Muestra cursos en carrito con total y checkout
+ * Ululato Premium - Página de Carrito de Compras
+ * Diseño elegante con sistema de cupones de descuento
  */
-import { Trash2, ShoppingBag } from 'lucide-react';
+import { useState } from 'react';
+import { Trash2, ShoppingBag, Heart, Shield, Clock, Award } from 'lucide-react';
 import { Link } from 'wouter';
 import Header from '@/components/Header';
+import CouponInput from '@/components/CouponInput';
 import { Button } from '@/components/ui/button';
 import { useApp } from '@/contexts/AppContext';
-import { courses } from '@/data/mocks';
+import { courses, Coupon } from '@/data/mocks';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 export default function CartPage() {
-  const { cart, removeFromCart, getCartTotal } = useApp();
+  const { cart, removeFromCart, toggleWishlist, wishlist, getCartTotal } = useApp();
+  const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
+  
   const cartItems = cart.map(id => courses.find(c => c.id === id)).filter((c): c is NonNullable<typeof c> => c !== undefined);
-  const total = getCartTotal();
+  const subtotal = getCartTotal();
+  
+  // Calcular descuento del cupón
+  const couponDiscount = appliedCoupon 
+    ? appliedCoupon.type === 'percentage' 
+      ? (subtotal * appliedCoupon.discount) / 100 
+      : appliedCoupon.discount
+    : 0;
+  
+  const total = subtotal - couponDiscount;
 
   const handleCheckout = () => {
     toast.success('Función de pago próximamente', {
@@ -21,27 +35,41 @@ export default function CartPage() {
     });
   };
 
+  const handleMoveToWishlist = (courseId: string) => {
+    removeFromCart(courseId);
+    if (!wishlist.includes(courseId)) {
+      toggleWishlist(courseId);
+    }
+    toast.success('Movido a lista de deseos');
+  };
+
   if (cart.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
         <div className="container py-20">
-          <div className="max-w-2xl mx-auto text-center space-y-6">
-            <ShoppingBag className="w-24 h-24 mx-auto text-muted-foreground" />
-            <h1 className="text-4xl font-bold text-display">Tu carrito está vacío</h1>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-2xl mx-auto text-center space-y-6"
+          >
+            <div className="w-32 h-32 mx-auto rounded-full bg-card border-2 border-border flex items-center justify-center">
+              <ShoppingBag className="w-16 h-16 text-muted-foreground" />
+            </div>
+            <h1 className="text-4xl font-bold font-display">Tu carrito está vacío</h1>
             <p className="text-lg text-muted-foreground">
               ¡Comienza a aprender hoy! Explora nuestros cursos y agrégalos a tu carrito.
             </p>
             <Button
               size="lg"
-              className="bg-[#FFD700] text-black hover:bg-[#FFD700]/90 font-bold border-4 border-black glow-gold-hover"
+              className="btn-premium text-lg px-8 py-6 rounded-xl"
               asChild
             >
               <Link href="/">
-                <a>Explorar Cursos</a>
+                Explorar Cursos
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
     );
@@ -52,88 +80,152 @@ export default function CartPage() {
       <Header />
 
       <div className="container py-12">
-        <h1 className="text-4xl font-bold text-display mb-8">Carrito de Compras</h1>
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold font-display mb-8"
+        >
+          Carrito de Compras
+        </motion.h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Artículos del Carrito */}
           <div className="lg:col-span-2 space-y-4">
-            {cartItems.map((course) => (
-              <div key={course.id} className="bg-card border-2 border-border rounded-lg p-6 flex gap-6">
-                <img
-                  src={course.thumbnail}
-                  alt={course.title}
-                  className="w-32 h-20 object-cover rounded border-2 border-border"
-                />
+            <p className="text-muted-foreground">
+              {cartItems.length} {cartItems.length === 1 ? 'curso' : 'cursos'} en tu carrito
+            </p>
+
+            {cartItems.map((course, index) => (
+              <motion.div 
+                key={course.id} 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-card border-2 border-border rounded-xl p-6 flex gap-6 hover:border-[#FFD700]/50 transition-all group"
+              >
+                <Link href={`/course/${course.id}`}>
+                  <a className="flex-shrink-0">
+                    <img
+                      src={course.thumbnail}
+                      alt={course.title}
+                      className="w-40 h-24 object-cover rounded-lg border border-border group-hover:border-[#FFD700]/50 transition-colors"
+                    />
+                  </a>
+                </Link>
                 <div className="flex-1 space-y-2">
                   <Link href={`/course/${course.id}`}>
-                    <a className="font-semibold text-lg hover:text-[#FFD700] transition-colors">
+                    <a className="font-semibold text-lg hover:text-[#FFD700] transition-colors line-clamp-2">
                       {course.title}
                     </a>
                   </Link>
                   <p className="text-sm text-muted-foreground">Por {course.instructor.name}</p>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="font-bold">{course.rating}</span>
-                    <span className="text-[#FFD700]">★★★★★</span>
-                    <span className="text-muted-foreground">({course.reviewCount.toLocaleString()})</span>
+                  <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-1">
+                      <span className="font-bold text-[#FFD700]">{course.rating}</span>
+                      <span className="text-[#FFD700]">★</span>
+                    </div>
+                    <span className="text-muted-foreground">({course.reviewCount.toLocaleString()} reseñas)</span>
+                    <span className="text-muted-foreground">•</span>
+                    <span className="text-muted-foreground">{course.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-2 pt-2">
+                    <button
+                      onClick={() => handleMoveToWishlist(course.id)}
+                      className="text-sm text-muted-foreground hover:text-[#FFD700] transition-colors flex items-center gap-1"
+                    >
+                      <Heart className="w-4 h-4" />
+                      Guardar para después
+                    </button>
+                    <span className="text-muted-foreground">•</span>
+                    <button
+                      onClick={() => {
+                        removeFromCart(course.id);
+                        toast.success('Eliminado del carrito');
+                      }}
+                      className="text-sm text-muted-foreground hover:text-destructive transition-colors flex items-center gap-1"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Eliminar
+                    </button>
                   </div>
                 </div>
-                <div className="flex flex-col items-end justify-between">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                    onClick={() => {
-                      removeFromCart(course.id);
-                      toast.success('Eliminado del carrito');
-                    }}
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </Button>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-[#FFD700]">${course.price}</div>
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-[#FFD700]">${course.price}</div>
+                  {course.originalPrice > course.price && (
                     <div className="text-sm text-muted-foreground line-through">${course.originalPrice}</div>
-                  </div>
+                  )}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Resumen del Pedido */}
           <div className="lg:col-span-1">
-            <div className="bg-card border-4 border-[#FFD700] rounded-lg p-6 space-y-6 sticky top-24">
-              <h2 className="text-2xl font-bold text-display">Resumen del Pedido</h2>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-card border-4 border-[#FFD700]/30 rounded-2xl p-6 space-y-6 sticky top-24"
+            >
+              <h2 className="text-2xl font-bold font-display">Resumen del Pedido</h2>
+              
+              {/* Cupón de descuento */}
+              <div className="border-b border-border pb-6">
+                <CouponInput
+                  subtotal={subtotal}
+                  appliedCoupon={appliedCoupon}
+                  onApplyCoupon={setAppliedCoupon}
+                />
+              </div>
               
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Subtotal:</span>
-                  <span className="font-semibold">${total.toFixed(2)}</span>
+                  <span className="font-semibold">${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Descuento:</span>
+                  <span className="text-muted-foreground">Descuento original:</span>
                   <span className="font-semibold text-green-500">
                     -${cartItems.reduce((acc, c) => acc + ((c?.originalPrice || 0) - (c?.price || 0)), 0).toFixed(2)}
                   </span>
                 </div>
+                {appliedCoupon && (
+                  <div className="flex justify-between text-green-500">
+                    <span>Cupón ({appliedCoupon.code}):</span>
+                    <span className="font-semibold">-${couponDiscount.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="border-t border-border pt-3">
                   <div className="flex justify-between items-baseline">
                     <span className="text-lg font-semibold">Total:</span>
-                    <span className="text-3xl font-bold text-[#FFD700]">${total.toFixed(2)}</span>
+                    <span className="text-3xl font-bold gradient-text">${total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
 
               <Button
                 size="lg"
-                className="w-full bg-[#FFD700] text-black hover:bg-[#FFD700]/90 font-bold text-lg border-4 border-black glow-gold-hover"
+                className="w-full btn-premium text-lg py-6 rounded-xl"
                 onClick={handleCheckout}
               >
                 Proceder al Pago
               </Button>
 
-              <div className="text-xs text-center text-muted-foreground">
-                Garantía de devolución de 30 días
+              {/* Garantías */}
+              <div className="space-y-3 pt-4 border-t border-border">
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <Shield className="w-5 h-5 text-[#FFD700]" />
+                  <span>Garantía de devolución de 30 días</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <Clock className="w-5 h-5 text-[#FFD700]" />
+                  <span>Acceso de por vida</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <Award className="w-5 h-5 text-[#FFD700]" />
+                  <span>Certificado de finalización</span>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

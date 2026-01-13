@@ -80,13 +80,13 @@ export interface CartItem {
 
 // Categorías disponibles
 export const categories = [
-  { id: 'desarrollo', name: 'Desarrollo', slug: 'desarrollo' },
-  { id: 'negocios', name: 'Negocios', slug: 'negocios' },
-  { id: 'diseno', name: 'Diseño', slug: 'diseno' },
-  { id: 'marketing', name: 'Marketing', slug: 'marketing' },
-  { id: 'ciencia-datos', name: 'Ciencia de Datos', slug: 'ciencia-datos' },
-  { id: 'finanzas', name: 'Finanzas', slug: 'finanzas' },
-  { id: 'idiomas', name: 'Idiomas', slug: 'idiomas' },
+  { id: 'desarrollo', name: 'Desarrollo', slug: 'desarrollo', icon: '💻', courseCount: 245 },
+  { id: 'negocios', name: 'Negocios', slug: 'negocios', icon: '💼', courseCount: 189 },
+  { id: 'diseno', name: 'Diseño', slug: 'diseno', icon: '🎨', courseCount: 156 },
+  { id: 'marketing', name: 'Marketing', slug: 'marketing', icon: '📈', courseCount: 134 },
+  { id: 'ciencia-datos', name: 'Ciencia de Datos', slug: 'ciencia-datos', icon: '📊', courseCount: 98 },
+  { id: 'finanzas', name: 'Finanzas', slug: 'finanzas', icon: '💰', courseCount: 87 },
+  { id: 'idiomas', name: 'Idiomas', slug: 'idiomas', icon: '🌍', courseCount: 76 },
 ];
 
 // Instructores
@@ -387,75 +387,98 @@ export const courses: Course[] = [
   },
   {
     id: "7",
-    title: "Aprende Wayuunaiki: El Idioma del Pueblo Wayuu",
+    title: "Wayuunaiki: El Idioma del Pueblo del Sol y el Viento",
     instructor: instructors[4],
-    thumbnail: "/images/course-thumb-wayuu.png",
-    description: "Sumérgete en el fascinante idioma Wayuunaiki, lengua ancestral del pueblo Wayuu de La Guajira, Colombia y Venezuela. Aprende desde los saludos básicos hasta conversaciones completas, mientras descubres la rica cultura, tradiciones y cosmovisión de esta milenaria comunidad indígena.",
+    thumbnail: "/images/wayuu-course-thumb-premium.png",
+    description: "Emprende un viaje transformador hacia el corazón de La Guajira. El Wayuunaiki no es solo un idioma, es la voz de un pueblo milenario que ha resistido el paso del tiempo, guardando en cada palabra la sabiduría del desierto, el susurro del mar Caribe y los secretos tejidos en las mochilas más hermosas del mundo. Aprende de la mano de María Pushaina, guardián de la lengua, y conecta con una cultura que te enseñará a ver el mundo con otros ojos.",
     price: 49.99,
     originalPrice: 99.99,
     rating: 4.9,
-    reviewCount: 2156,
-    studentCount: 15000,
-    duration: "20 horas",
+    reviewCount: 3847,
+    studentCount: 18500,
+    duration: "24 horas",
     level: "Principiante",
     category: "idiomas",
-    isBestseller: false,
+    isBestseller: true,
     isNew: true,
     isFeatured: true,
     whatYouWillLearn: [
-      "Dominar la pronunciación y fonética del Wayuunaiki",
-      "Mantener conversaciones básicas y cotidianas en Wayuunaiki",
-      "Comprender la estructura gramatical única del idioma",
-      "Conocer el vocabulario relacionado con la cultura y tradiciones Wayuu",
-      "Aprender sobre la cosmovisión y valores del pueblo Wayuu",
-      "Leer y escribir en Wayuunaiki usando el alfabeto oficial",
+      "Dominar la pronunciación auténtica del Wayuunaiki con guía de hablante nativa",
+      "Mantener conversaciones fluidas sobre la vida cotidiana y la naturaleza",
+      "Comprender la cosmovisión Wayuu: los tres mundos y los seres espirituales",
+      "Aprender el arte del tejido a través del vocabulario de las mochilas",
+      "Conocer los clanes (e'irükü) y el sistema matrilineal Wayuu",
+      "Participar en ceremonias tradicionales como la Yonna con respeto cultural",
+      "Interpretar los sueños (Lapü) según la tradición Wayuu",
+      "Conectar con la comunidad Wayuu de manera auténtica y respetuosa",
     ],
     sections: [
       {
         id: "s1",
-        title: "Introducción al Mundo Wayuu",
+        title: "Bienvenido al Territorio Wayuu",
         lectures: [
-          { id: "l1", title: "Bienvenida: Anasü (Hola)", duration: "8:00", completed: false },
-          { id: "l2", title: "El Pueblo Wayuu y La Guajira", duration: "15:30", completed: false },
-          { id: "l3", title: "Historia y Origen del Wayuunaiki", duration: "12:45", completed: false },
-          { id: "l4", title: "El Alfabeto Wayuunaiki", duration: "20:00", completed: false },
+          { id: "l1", title: "Anasü: Tu Primera Palabra en Wayuunaiki", duration: "10:00", completed: false },
+          { id: "l2", title: "La Guajira: Donde el Desierto Abraza el Mar", duration: "18:30", completed: false },
+          { id: "l3", title: "Historia Viva: El Pueblo que Nunca fue Conquistado", duration: "22:45", completed: false },
+          { id: "l4", title: "El Alfabeto: Los Sonidos del Viento", duration: "25:00", completed: false },
         ],
       },
       {
         id: "s2",
-        title: "Saludos y Presentaciones",
+        title: "Las Palabras del Encuentro",
         lectures: [
-          { id: "l5", title: "Saludos Básicos: Jamaya, Anasü, Anaataa", duration: "18:15", completed: false },
-          { id: "l6", title: "Presentándote: Taya (Yo soy...)", duration: "22:30", completed: false },
-          { id: "l7", title: "Preguntar el Nombre: ¿Jaralü pia?", duration: "15:00", completed: false },
-          { id: "l8", title: "Despedidas y Cortesías", duration: "14:20", completed: false },
+          { id: "l5", title: "Jamaya: El Saludo que Pregunta por tu Bienestar", duration: "18:15", completed: false },
+          { id: "l6", title: "Taya: Presentando tu Ser al Mundo", duration: "22:30", completed: false },
+          { id: "l7", title: "¿Jaralü pia? - Conociendo a Otros", duration: "15:00", completed: false },
+          { id: "l8", title: "Aipüa: Despedidas con Significado", duration: "14:20", completed: false },
         ],
       },
       {
         id: "s3",
-        title: "La Familia Wayuu (Apüshi)",
+        title: "El Apüshi: La Familia Extendida",
         lectures: [
-          { id: "l9", title: "Miembros de la Familia", duration: "25:00", completed: false },
-          { id: "l10", title: "El Sistema de Clanes Wayuu", duration: "18:45", completed: false },
-          { id: "l11", title: "Relaciones Familiares en Wayuunaiki", duration: "20:30", completed: false },
+          { id: "l9", title: "El Linaje Materno: Raíces de Identidad", duration: "25:00", completed: false },
+          { id: "l10", title: "Los E'irükü: Clanes y su Historia", duration: "28:45", completed: false },
+          { id: "l11", title: "Tío Materno: El Segundo Padre", duration: "20:30", completed: false },
+          { id: "l12", title: "La Rancheria: Hogar Colectivo", duration: "18:00", completed: false },
         ],
       },
       {
         id: "s4",
-        title: "Números y Colores",
+        title: "Contando el Mundo Wayuu",
         lectures: [
-          { id: "l12", title: "Números del 1 al 20", duration: "22:00", completed: false },
-          { id: "l13", title: "Números Grandes y Conteo", duration: "16:30", completed: false },
-          { id: "l14", title: "Los Colores en Wayuunaiki", duration: "18:00", completed: false },
+          { id: "l13", title: "Waneši a Piama: Números del 1 al 10", duration: "22:00", completed: false },
+          { id: "l14", title: "Contando Chivos y Estrellas", duration: "16:30", completed: false },
+          { id: "l15", title: "Los Colores del Tejido", duration: "24:00", completed: false },
         ],
       },
       {
         id: "s5",
-        title: "Cultura y Tradiciones",
+        title: "El Arte Sagrado del Tejido",
         lectures: [
-          { id: "l15", title: "El Arte del Tejido: Las Mochilas Wayuu", duration: "28:00", completed: false },
-          { id: "l16", title: "La Yonna: Danza Tradicional", duration: "20:15", completed: false },
-          { id: "l17", title: "Mitos y Leyendas Wayuu", duration: "25:30", completed: false },
+          { id: "l16", title: "Waleker: La Araña que Enseñó a Tejer", duration: "28:00", completed: false },
+          { id: "l17", title: "Kanas: Los Símbolos que Cuentan Historias", duration: "32:15", completed: false },
+          { id: "l18", title: "Vocabulario del Telar y la Mochila", duration: "25:30", completed: false },
+        ],
+      },
+      {
+        id: "s6",
+        title: "Cosmovisión y Espiritualidad",
+        lectures: [
+          { id: "l19", title: "Los Tres Mundos Wayuu", duration: "30:00", completed: false },
+          { id: "l20", title: "Jepíra: El Lugar de los Muertos", duration: "25:00", completed: false },
+          { id: "l21", title: "Lapü: El Poder de los Sueños", duration: "28:00", completed: false },
+          { id: "l22", title: "Juya y Pulowi: Lluvia y Sequía", duration: "22:00", completed: false },
+        ],
+      },
+      {
+        id: "s7",
+        title: "Ceremonias y Celebraciones",
+        lectures: [
+          { id: "l23", title: "La Yonna: Danza del Encuentro", duration: "35:00", completed: false },
+          { id: "l24", title: "El Encierro: Ritual de la Mujer", duration: "28:00", completed: false },
+          { id: "l25", title: "Palabrero: El Arte de la Paz", duration: "30:00", completed: false },
+          { id: "l26", title: "Proyecto Final: Tu Conexión Wayuu", duration: "20:00", completed: false },
         ],
       },
     ],
@@ -465,24 +488,40 @@ export const courses: Course[] = [
         userName: "Carlos Mendoza",
         userAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop",
         rating: 5,
-        date: "2024-01-25",
-        comment: "Increíble curso. María es una maestra excepcional que no solo enseña el idioma sino toda la riqueza cultural del pueblo Wayuu. Aprendí mucho sobre mis raíces colombianas.",
+        date: "2026-01-05",
+        comment: "Este curso transformó mi vida. Viajé a La Guajira después de completarlo y pude comunicarme con la comunidad. Los ojos de una abuela Wayuu se iluminaron cuando le dije 'Anasü' correctamente. Ese momento no tiene precio.",
       },
       {
         id: "r2",
         userName: "Ana Lucía Pérez",
         userAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&h=50&fit=crop",
         rating: 5,
-        date: "2024-01-22",
-        comment: "Como lingüista, estoy fascinada con la estructura del Wayuunaiki. Este curso es una joya para preservar lenguas indígenas. ¡Gracias por este aporte cultural!",
+        date: "2026-01-02",
+        comment: "Como lingüista, he estudiado muchos idiomas, pero el Wayuunaiki tiene una belleza única. María no solo enseña gramática, enseña una forma de ver el mundo. La lección sobre los sueños (Lapü) me dejó sin palabras.",
       },
       {
         id: "r3",
-        userName: "Roberto Ipuana",
+        userName: "Roberto Ipuana Epieyu",
         userAvatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=50&h=50&fit=crop",
         rating: 5,
-        date: "2024-01-20",
-        comment: "Soy Wayuu y este curso me ayudó a reconectar con mi idioma ancestral que había olvidado. Waneepia (Gracias) María por este hermoso trabajo.",
+        date: "2025-12-28",
+        comment: "Soy Wayuu pero crecí en Bogotá y perdí mi idioma. Este curso me devolvió parte de mi identidad. Cuando le hablé a mi abuela en Wayuunaiki por primera vez, ambos lloramos. Waneepia María, por siempre.",
+      },
+      {
+        id: "r4",
+        userName: "Mariana Velásquez",
+        userAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop",
+        rating: 5,
+        date: "2025-12-20",
+        comment: "Compré una mochila Wayuu hace años sin saber su significado. Después de este curso, entiendo cada símbolo tejido en ella. Es como si la mochila me contara historias ahora. Contenido extraordinario.",
+      },
+      {
+        id: "r5",
+        userName: "Andrés González",
+        userAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop",
+        rating: 5,
+        date: "2025-12-15",
+        comment: "La sección sobre el Palabrero y el sistema de justicia Wayuu debería ser obligatoria en todas las facultades de derecho. Una cultura que resuelve conflictos con palabras, no con violencia. Inspirador.",
       },
     ],
     questions: [
@@ -513,9 +552,13 @@ export const currentUser = {
   name: "Carlos Rodríguez",
   email: "carlos@ejemplo.com",
   avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop",
-  enrolledCourses: ["1", "2"],
+  enrolledCourses: ["1", "2", "7"],
   wishlist: ["3", "4"],
   cart: [] as string[],
+  bio: "Apasionado por el aprendizaje continuo y las nuevas tecnologías. Desarrollador web con interés en culturas indígenas.",
+  location: "Bogotá, Colombia",
+  joinedDate: "Enero 2024",
+  learningGoals: ["Desarrollo Web", "Idiomas", "Liderazgo"],
 };
 
 // Datos de ganancias del instructor (para dashboard)
@@ -559,3 +602,87 @@ export const filterOptions = {
     { value: "Todos los Niveles", label: "Todos los Niveles" },
   ],
 };
+
+
+// Testimonios
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+  content: string;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 'test-1',
+    name: 'Valentina Herrera',
+    role: 'Desarrolladora Frontend en Rappi',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
+    content: 'Gracias a Ululato conseguí mi trabajo soñado. Los cursos de desarrollo web me dieron las habilidades que necesitaba para destacar en las entrevistas.',
+  },
+  {
+    id: 'test-2',
+    name: 'Diego Ramírez',
+    role: 'Fundador de Startup EdTech',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    content: 'El curso de MBA Express transformó mi visión empresarial. Apliqué lo aprendido y mi startup creció un 300% en un año.',
+  },
+  {
+    id: 'test-3',
+    name: 'Camila Ortiz',
+    role: 'Diseñadora UX Senior',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face',
+    content: 'La calidad del contenido es excepcional. Cada curso está diseñado con amor y se nota la pasión de los instructores por enseñar.',
+  },
+];
+
+// Estadísticas
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export const stats: Stat[] = [
+  { value: '500K+', label: 'Estudiantes Activos' },
+  { value: '1,200+', label: 'Cursos Disponibles' },
+  { value: '150+', label: 'Instructores Expertos' },
+  { value: '4.8', label: 'Calificación Promedio' },
+];
+
+// Cupones de descuento
+export interface Coupon {
+  code: string;
+  discount: number;
+  type: 'percentage' | 'fixed';
+  minPurchase: number;
+  expiresAt: string;
+  description: string;
+}
+
+export const coupons: Coupon[] = [
+  {
+    code: 'BIENVENIDO2026',
+    discount: 20,
+    type: 'percentage',
+    minPurchase: 50,
+    expiresAt: '2026-12-31',
+    description: '20% de descuento en tu primera compra',
+  },
+  {
+    code: 'WAYUU50',
+    discount: 50,
+    type: 'percentage',
+    minPurchase: 0,
+    expiresAt: '2026-03-31',
+    description: '50% de descuento en el curso de Wayuunaiki',
+  },
+  {
+    code: 'AHORRA10',
+    discount: 10,
+    type: 'fixed',
+    minPurchase: 75,
+    expiresAt: '2026-06-30',
+    description: '$10 de descuento en compras mayores a $75',
+  },
+];

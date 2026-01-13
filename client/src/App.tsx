@@ -12,6 +12,7 @@ import MyLearning from "./pages/MyLearning";
 import InstructorDashboard from "./pages/InstructorDashboard";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function Router() {
   return (
@@ -25,6 +26,8 @@ function Router() {
       <Route path={"/instructor/dashboard"} component={InstructorDashboard} />
       <Route path={"/categoria/:slug"} component={CategoryPage} />
       <Route path={"/buscar"} component={SearchPage} />
+      <Route path={"/perfil"} component={ProfilePage} />
+      <Route path={"/profile"} component={ProfilePage} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
