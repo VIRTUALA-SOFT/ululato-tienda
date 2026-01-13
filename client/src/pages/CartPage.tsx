@@ -103,20 +103,16 @@ export default function CartPage() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-card border-2 border-border rounded-xl p-6 flex gap-6 hover:border-[#FFD700]/50 transition-all group"
               >
-                <Link href={`/course/${course.id}`}>
-                  <a className="flex-shrink-0">
-                    <img
-                      src={course.thumbnail}
-                      alt={course.title}
-                      className="w-40 h-24 object-cover rounded-lg border border-border group-hover:border-[#FFD700]/50 transition-colors"
-                    />
-                  </a>
+                <Link href={`/course/${course.id}`} className="flex-shrink-0">
+                  <img
+                    src={course.thumbnail}
+                    alt={course.title}
+                    className="w-40 h-24 object-cover rounded-lg border border-border group-hover:border-[#FFD700]/50 transition-colors"
+                  />
                 </Link>
                 <div className="flex-1 space-y-2">
-                  <Link href={`/course/${course.id}`}>
-                    <a className="font-semibold text-lg hover:text-[#FFD700] transition-colors line-clamp-2">
-                      {course.title}
-                    </a>
+                  <Link href={`/course/${course.id}`} className="font-semibold text-lg hover:text-[#FFD700] transition-colors line-clamp-2 block">
+                    {course.title}
                   </Link>
                   <p className="text-sm text-muted-foreground">Por {course.instructor.name}</p>
                   <div className="flex items-center gap-4 text-sm">
