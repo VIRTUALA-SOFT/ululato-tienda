@@ -17,6 +17,7 @@ import {
 } from './ui/dropdown-menu';
 import { useApp } from '@/contexts/AppContext';
 import { currentUser, courses } from '@/data/mocks';
+import LanguageSelector from './LanguageSelector';
 
 const categoriesNav = [
   { name: 'Desarrollo', icon: Code, href: '/categoria/desarrollo' },
@@ -164,6 +165,9 @@ export default function Header() {
                 )}
               </Button>
             </Link>
+
+            {/* Selector de Idioma */}
+            <LanguageSelector className="text-white" />
 
             {/* Notificaciones */}
             <DropdownMenu>

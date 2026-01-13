@@ -10,8 +10,10 @@ import {
   BookOpen, Zap, Target, Quote
 } from 'lucide-react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import CourseCard from '@/components/CourseCard';
 import CourseFilters from '@/components/CourseFilters';
+import WeavingAnimation from '@/components/WeavingAnimation';
 import { Button } from '@/components/ui/button';
 import { courses, categories, testimonials, stats } from '@/data/mocks';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -560,6 +562,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 3D Animation Section - El tejido que nos une */}
+      <section className="py-0 relative overflow-hidden bg-gradient-to-b from-[#001a33] to-[#003366]">
+        <WeavingAnimation height="600px" />
+        <div className="absolute bottom-8 left-0 right-0 text-center">
+          <p className="text-white/60 text-lg">
+            Una experiencia de aprendizaje que conecta culturas, personas y conocimiento
+          </p>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20">
         <div className="container">
@@ -591,57 +603,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 border-t border-border">
-        <div className="container">
-          <div className="grid md:grid-cols-4 gap-12">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-lg bg-[#FFD700] flex items-center justify-center">
-                  <BookOpen className="w-6 h-6 text-black" />
-                </div>
-                <span className="text-2xl font-bold font-display">Ululato</span>
-              </div>
-              <p className="text-muted-foreground">
-                Transformando vidas a través del aprendizaje. Tu éxito es nuestra misión.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Explorar</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Todos los Cursos</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Categorías</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Instructores</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Certificaciones</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Comunidad</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Foro</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Eventos</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Embajadores</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Soporte</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Centro de Ayuda</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Contacto</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Términos</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Privacidad</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="divider-elegant my-8" />
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© 2026 Ululato. Todos los derechos reservados.</p>
-            <p className="flex items-center gap-1">
-              Hecho con <Heart className="w-4 h-4 text-[#DC143C]" fill="currentColor" /> en Colombia
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
