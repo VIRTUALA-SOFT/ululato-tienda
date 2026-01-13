@@ -51,9 +51,9 @@ export default function LoginPage() {
           className="w-full max-w-md mx-auto"
         >
           {/* Logo */}
-          <Link href="/" className="inline-block mb-8">
-            <Logo />
-          </Link>
+          <div className="mb-8">
+            <Logo size="lg" />
+          </div>
 
           {/* Header */}
           <div className="mb-8">

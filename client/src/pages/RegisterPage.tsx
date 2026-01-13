@@ -201,9 +201,9 @@ export default function RegisterPage() {
           className="w-full max-w-md mx-auto"
         >
           {/* Logo */}
-          <Link href="/" className="inline-block mb-8">
-            <Logo />
-          </Link>
+          <div className="mb-8">
+            <Logo size="lg" />
+          </div>
 
           {/* Progress Steps */}
           <div className="flex items-center gap-2 mb-8">

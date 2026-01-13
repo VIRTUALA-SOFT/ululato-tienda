@@ -1,19 +1,64 @@
 /**
- * Neo-Brutalism Dark Edition: Logo component
- * Uses Space Grotesk bold font with golden feather icon
+ * Ululato Logo Component
+ * Uses the feather logo representing knowledge and cultural heritage
  */
-import { BookOpen } from 'lucide-react';
 import { Link } from 'wouter';
+import { cn } from '@/lib/utils';
 
-export default function Logo({ className = "" }: { className?: string }) {
+interface LogoProps {
+  className?: string;
+  showText?: boolean;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+const sizeClasses = {
+  sm: 'h-6',
+  md: 'h-8',
+  lg: 'h-10',
+  xl: 'h-14',
+};
+
+const textSizeClasses = {
+  sm: 'text-lg',
+  md: 'text-xl',
+  lg: 'text-2xl',
+  xl: 'text-3xl',
+};
+
+export default function Logo({ className = "", showText = true, size = 'md' }: LogoProps) {
   return (
-    <Link href="/">
-      <a className={`flex items-center gap-2 group ${className}`}>
-        <BookOpen className="w-8 h-8 text-[#FFD700] group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
-        <span className="text-2xl font-bold text-white text-display tracking-tight">
+    <Link href="/" className={cn("flex items-center gap-2 group", className)}>
+      <img 
+        src="/images/logo.png" 
+        alt="Ululato Logo" 
+        className={cn(
+          sizeClasses[size],
+          "w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+        )}
+      />
+      {showText && (
+        <span className={cn(
+          textSizeClasses[size],
+          "font-bold text-white font-display tracking-tight"
+        )}>
           ULULATO
         </span>
-      </a>
+      )}
     </Link>
+  );
+}
+
+// Standalone logo image for use in other contexts
+export function LogoImage({ className = "", size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' | 'xl' }) {
+  return (
+    <img 
+      src="/images/logo.png" 
+      alt="Ululato Logo" 
+      className={cn(
+        sizeClasses[size],
+        "w-auto object-contain",
+        className
+      )}
+    />
   );
 }
