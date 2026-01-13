@@ -3,7 +3,7 @@
  * Fondo azul marino con acentos dorados en elementos interactivos
  */
 import { useState } from 'react';
-import { Search, ShoppingCart, Bell, ChevronDown, BookOpen, Code, Briefcase, TrendingUp, Palette, Globe, X } from 'lucide-react';
+import { Search, ShoppingCart, ChevronDown, BookOpen, Code, Briefcase, TrendingUp, Palette, Globe, X } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import Logo from './Logo';
 import { Button } from './ui/button';
@@ -18,6 +18,8 @@ import {
 import { useApp } from '@/contexts/AppContext';
 import { currentUser, courses } from '@/data/mocks';
 import LanguageSelector from './LanguageSelector';
+import ThemeToggle from './ThemeToggle';
+import { NotificationButton } from './NotificationSystem';
 
 const categoriesNav = [
   { name: 'Desarrollo', icon: Code, href: '/categoria/desarrollo' },
@@ -169,34 +171,11 @@ export default function Header() {
             {/* Selector de Idioma */}
             <LanguageSelector className="text-white" />
 
+            {/* Toggle de Tema */}
+            <ThemeToggle />
+
             {/* Notificaciones */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative text-white hover:text-[#FFD700] hover:bg-white/10">
-                  <Bell className="w-5 h-5" />
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-[#DC143C] text-white text-xs border-2 border-[#003366]">
-                    3
-                  </Badge>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-80 bg-card border-2 border-border">
-                <div className="p-4 border-b border-border">
-                  <h3 className="font-semibold text-display">Notificaciones</h3>
-                </div>
-                <DropdownMenuItem className="p-4 hover:bg-accent">
-                  <div>
-                    <p className="font-medium">¡Nuevo curso disponible!</p>
-                    <p className="text-sm text-muted-foreground">Aprende Wayuunaiki - El idioma del pueblo Wayuu</p>
-                  </div>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="p-4 hover:bg-accent">
-                  <div>
-                    <p className="font-medium">Actualización de curso</p>
-                    <p className="text-sm text-muted-foreground">Nuevas lecciones añadidas a Estrategia Empresarial</p>
-                  </div>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <NotificationButton />
 
             {/* Menú de Usuario */}
             <DropdownMenu>

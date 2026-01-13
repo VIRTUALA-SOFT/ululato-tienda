@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AppProvider } from "./contexts/AppContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { NotificationProvider } from "./components/NotificationSystem";
 import Home from "./pages/Home";
 import CoursePage from "./pages/CoursePage";
 import CartPage from "./pages/CartPage";
@@ -84,14 +85,16 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider defaultTheme="dark" switchable>
         <LanguageProvider>
+          <NotificationProvider>
           <AppProvider>
             <TooltipProvider>
               <Toaster />
               <Router />
             </TooltipProvider>
           </AppProvider>
+          </NotificationProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
