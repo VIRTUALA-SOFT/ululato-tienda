@@ -1,6 +1,6 @@
 /**
- * Neo-Brutalism Dark Edition: Course card with thick borders, glow effects
- * Shows thumbnail, title, instructor, rating, price with golden accents
+ * Neo-Brutalism Dark Edition: Tarjeta de curso con bordes gruesos, efectos glow
+ * Muestra thumbnail, título, instructor, calificación, precio con acentos dorados
  */
 import { Star, Heart, Users } from 'lucide-react';
 import { Link } from 'wouter';
@@ -50,12 +50,12 @@ export default function CourseCard({ course, className }: CourseCardProps) {
           <div className="absolute top-3 left-3 flex flex-col gap-2">
             {course.isBestseller && (
               <Badge className="bg-[#FFD700] text-black font-bold border-2 border-black">
-                Bestseller
+                Más Vendido
               </Badge>
             )}
             {course.isNew && (
               <Badge className="bg-[#DC143C] text-white font-bold border-2 border-black">
-                New
+                Nuevo
               </Badge>
             )}
             {discount > 0 && (
@@ -65,7 +65,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
             )}
           </div>
 
-          {/* Wishlist Button */}
+          {/* Botón de Wishlist */}
           <Button
             variant="ghost"
             size="icon"
@@ -81,9 +81,9 @@ export default function CourseCard({ course, className }: CourseCardProps) {
           </Button>
         </div>
 
-        {/* Content */}
+        {/* Contenido */}
         <div className="p-4 space-y-3">
-          {/* Title */}
+          {/* Título */}
           <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-[#FFD700] transition-colors">
             {course.title}
           </h3>
@@ -93,7 +93,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
             {course.instructor.name}
           </p>
 
-          {/* Rating & Students */}
+          {/* Calificación y Estudiantes */}
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center gap-1">
               <span className="font-bold text-[#FFD700]">{course.rating}</span>
@@ -118,7 +118,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
             </div>
           </div>
 
-          {/* Price & CTA */}
+          {/* Precio y CTA */}
           <div className="flex items-center justify-between pt-2 border-t border-border">
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-[#FFD700]">
@@ -136,11 +136,11 @@ export default function CourseCard({ course, className }: CourseCardProps) {
                 className="bg-[#FFD700] text-black hover:bg-[#FFD700]/90 font-bold border-2 border-black glow-gold-hover"
                 onClick={handleAddToCart}
               >
-                Add to Cart
+                Agregar
               </Button>
             ) : (
               <Badge className="bg-green-600 text-white border-2 border-black">
-                In Cart
+                En Carrito
               </Badge>
             )}
           </div>

@@ -10,15 +10,21 @@ import CoursePage from "./pages/CoursePage";
 import CartPage from "./pages/CartPage";
 import MyLearning from "./pages/MyLearning";
 import InstructorDashboard from "./pages/InstructorDashboard";
+import CategoryPage from "./pages/CategoryPage";
+import SearchPage from "./pages/SearchPage";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/course/:id"} component={CoursePage} />
+      <Route path={"/carrito"} component={CartPage} />
       <Route path={"/cart"} component={CartPage} />
+      <Route path={"/mi-aprendizaje"} component={MyLearning} />
       <Route path={"/my-learning"} component={MyLearning} />
       <Route path={"/instructor/dashboard"} component={InstructorDashboard} />
+      <Route path={"/categoria/:slug"} component={CategoryPage} />
+      <Route path={"/buscar"} component={SearchPage} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
