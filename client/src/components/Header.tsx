@@ -138,11 +138,9 @@ export default function Header() {
               <DropdownMenuContent align="end" className="w-56 bg-card border-2 border-border">
                 {categoriesNav.map((category) => (
                   <DropdownMenuItem key={category.name} asChild>
-                    <Link href={category.href}>
-                      <a className="flex items-center gap-3 w-full px-3 py-2 hover:bg-accent">
-                        <category.icon className="w-5 h-5 text-[#FFD700]" />
-                        <span>{category.name}</span>
-                      </a>
+                    <Link href={category.href} className="flex items-center gap-3 w-full px-3 py-2 hover:bg-accent">
+                      <category.icon className="w-5 h-5 text-[#FFD700]" />
+                      <span>{category.name}</span>
                     </Link>
                   </DropdownMenuItem>
                 ))}
@@ -194,19 +192,13 @@ export default function Header() {
                   <p className="text-sm text-muted-foreground">{currentUser.email}</p>
                 </div>
                 <DropdownMenuItem asChild>
-                  <Link href="/perfil">
-                    <a className="w-full px-3 py-2">Mi Perfil</a>
-                  </Link>
+                  <Link href="/perfil" className="w-full px-3 py-2">Mi Perfil</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/mi-aprendizaje">
-                    <a className="w-full px-3 py-2">Mi Aprendizaje</a>
-                  </Link>
+                  <Link href="/mi-aprendizaje" className="w-full px-3 py-2">Mi Aprendizaje</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/instructor/dashboard">
-                    <a className="w-full px-3 py-2">Panel de Instructor</a>
-                  </Link>
+                  <Link href="/instructor/dashboard" className="w-full px-3 py-2">Panel de Instructor</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="px-3 py-2 text-destructive">
                   Cerrar Sesión

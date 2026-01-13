@@ -87,11 +87,9 @@ export default function CartPage() {
             <Button
               size="lg"
               className="btn-premium text-lg px-8 py-6 rounded-xl"
-              asChild
+              onClick={() => navigate('/')}
             >
-              <Link href="/">
-                Explorar Cursos
-              </Link>
+              Explorar Cursos
             </Button>
           </motion.div>
         </div>
