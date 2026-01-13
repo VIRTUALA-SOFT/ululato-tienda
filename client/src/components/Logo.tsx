@@ -9,6 +9,7 @@ interface LogoProps {
   className?: string;
   showText?: boolean;
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  asLink?: boolean;
 }
 
 const sizeClasses = {
@@ -25,9 +26,9 @@ const textSizeClasses = {
   xl: 'text-3xl',
 };
 
-export default function Logo({ className = "", showText = true, size = 'md' }: LogoProps) {
+function LogoContent({ showText = true, size = 'md', className = "" }: Omit<LogoProps, 'asLink'>) {
   return (
-    <Link href="/" className={cn("flex items-center gap-2 group", className)}>
+    <div className={cn("flex items-center gap-2 group", className)}>
       <img 
         src="/images/logo.png" 
         alt="Ululato Logo" 
@@ -44,8 +45,35 @@ export default function Logo({ className = "", showText = true, size = 'md' }: L
           ULULATO
         </span>
       )}
-    </Link>
+    </div>
   );
+}
+
+export default function Logo({ className = "", showText = true, size = 'md', asLink = true }: LogoProps) {
+  if (asLink) {
+    return (
+      <Link href="/" className={cn("flex items-center gap-2 group", className)}>
+        <img 
+          src="/images/logo.png" 
+          alt="Ululato Logo" 
+          className={cn(
+            sizeClasses[size],
+            "w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+          )}
+        />
+        {showText && (
+          <span className={cn(
+            textSizeClasses[size],
+            "font-bold text-white font-display tracking-tight"
+          )}>
+            ULULATO
+          </span>
+        )}
+      </Link>
+    );
+  }
+
+  return <LogoContent showText={showText} size={size} className={className} />;
 }
 
 // Standalone logo image for use in other contexts

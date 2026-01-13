@@ -75,10 +75,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.explorar.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href}>
-                    <a className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
-                      {link.label}
-                    </a>
+                  <Link href={link.href} className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -91,10 +89,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.comunidad.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href}>
-                    <a className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
-                      {link.label}
-                    </a>
+                  <Link href={link.href} className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -107,10 +103,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.soporte.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href}>
-                    <a className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
-                      {link.label}
-                    </a>
+                  <Link href={link.href} className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
+                    {link.label}
                   </Link>
                 </li>
               ))}
