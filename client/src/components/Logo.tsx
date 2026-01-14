@@ -27,10 +27,10 @@ const saberesSizeClasses = {
 };
 
 const dividerHeightClasses = {
-  sm: 'h-6',
-  md: 'h-7',
-  lg: 'h-8',
-  xl: 'h-10',
+  sm: 'h-5',
+  md: 'h-6',
+  lg: 'h-7',
+  xl: 'h-9',
 };
 
 function LogoContent({ size = 'md', className = "" }: Omit<LogoProps, 'asLink'>) {
@@ -39,18 +39,22 @@ function LogoContent({ size = 'md', className = "" }: Omit<LogoProps, 'asLink'>)
       {/* Logo Icon */}
       <img 
         src="/images/logo.png" 
-        alt="Ululato Logo" 
+        alt="Saberes Logo" 
         className={cn(
           sizeClasses[size],
           "w-auto object-contain group-hover:scale-105 transition-transform duration-300"
         )}
       />
       
-      {/* Línea divisoria vertical - más visible */}
-      <div className={cn(
-        dividerHeightClasses[size],
-        "w-[2px] bg-white/40"
-      )} />
+      {/* Línea divisoria vertical - visible */}
+      <div 
+        className={cn(dividerHeightClasses[size])}
+        style={{
+          width: '1px',
+          background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent)',
+          boxShadow: '0 0 4px rgba(255,255,255,0.3)'
+        }}
+      />
       
       {/* Palabra SABERES */}
       <span 
@@ -73,18 +77,22 @@ export default function Logo({ className = "", size = 'md', asLink = true }: Log
         {/* Logo Icon */}
         <img 
           src="/images/logo.png" 
-          alt="Ululato Logo" 
+          alt="Saberes Logo" 
           className={cn(
             sizeClasses[size],
             "w-auto object-contain group-hover:scale-105 transition-transform duration-300"
           )}
         />
         
-        {/* Línea divisoria vertical - más visible */}
-        <div className={cn(
-          dividerHeightClasses[size],
-          "w-[2px] bg-white/40"
-        )} />
+        {/* Línea divisoria vertical - visible */}
+        <div 
+          className={cn(dividerHeightClasses[size])}
+          style={{
+            width: '1px',
+            background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent)',
+            boxShadow: '0 0 4px rgba(255,255,255,0.3)'
+          }}
+        />
         
         {/* Palabra SABERES */}
         <span 
@@ -108,7 +116,7 @@ export function LogoImage({ className = "", size = 'md' }: { className?: string;
   return (
     <img 
       src="/images/logo.png" 
-      alt="Ululato Logo" 
+      alt="Saberes Logo" 
       className={cn(
         sizeClasses[size],
         "w-auto object-contain",

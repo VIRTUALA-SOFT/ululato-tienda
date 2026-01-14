@@ -3,7 +3,7 @@
  * Fondo azul marino con acentos dorados en elementos interactivos
  */
 import { useState } from 'react';
-import { Search, ShoppingCart, ChevronDown, BookOpen, Code, Briefcase, TrendingUp, Palette, Globe, X } from 'lucide-react';
+import { Search, ShoppingCart, ChevronDown, BookOpen, Code, Briefcase, TrendingUp, Palette, Globe, X, ArrowLeft } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import Logo from './Logo';
 import { Button } from './ui/button';
@@ -62,8 +62,27 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-[#003366] border-b-4 border-[#FFD700] shadow-lg">
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-20 gap-4">
-          {/* Logo */}
-          <Logo />
+          {/* Link "Volviendo al Origen" + Logo */}
+          <div className="flex items-center gap-4">
+            {/* Link Volviendo al Origen */}
+            <a 
+              href="https://prototipo.ululato.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-4 py-2 rounded-full border border-transparent hover:border-[#FFD700] transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4 text-white/70 group-hover:text-[#FFD700] transition-colors" />
+              <span 
+                className="text-xs font-light tracking-[0.15em] text-white/70 group-hover:text-[#FFD700] uppercase transition-colors"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+              >
+                VOLVIENDO AL ORIGEN
+              </span>
+            </a>
+
+            {/* Logo */}
+            <Logo />
+          </div>
 
           {/* Barra de Búsqueda */}
           <div className="hidden md:flex flex-1 max-w-2xl relative">
@@ -100,32 +119,35 @@ export default function Header() {
             {showSearchResults && searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 bg-card border-2 border-border rounded-lg shadow-xl overflow-hidden z-50">
                 {searchResults.map((course) => (
-                  <Link key={course.id} href={`/course/${course.id}`}>
-                    <a
-                      className="flex items-center gap-4 p-4 hover:bg-accent transition-colors"
-                      onClick={() => setShowSearchResults(false)}
-                    >
-                      <img
-                        src={course.thumbnail}
-                        alt={course.title}
-                        className="w-16 h-10 object-cover rounded"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium truncate">{course.title}</p>
-                        <p className="text-sm text-muted-foreground">{course.instructor.name}</p>
-                      </div>
-                      <span className="text-[#FFD700] font-bold">${course.price}</span>
-                    </a>
-                  </Link>
-                ))}
-                <Link href={`/buscar?q=${encodeURIComponent(searchQuery)}`}>
-                  <a
-                    className="block p-4 text-center text-[#FFD700] hover:bg-accent font-medium border-t border-border"
-                    onClick={() => setShowSearchResults(false)}
+                  <div
+                    key={course.id}
+                    className="flex items-center gap-4 p-4 hover:bg-accent transition-colors cursor-pointer"
+                    onClick={() => {
+                      setShowSearchResults(false);
+                      setLocation(`/course/${course.id}`);
+                    }}
                   >
-                    Ver todos los resultados
-                  </a>
-                </Link>
+                    <img
+                      src={course.thumbnail}
+                      alt={course.title}
+                      className="w-16 h-10 object-cover rounded"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium truncate">{course.title}</p>
+                      <p className="text-sm text-muted-foreground">{course.instructor.name}</p>
+                    </div>
+                    <span className="text-[#FFD700] font-bold">${course.price}</span>
+                  </div>
+                ))}
+                <div
+                  className="block p-4 text-center text-[#FFD700] hover:bg-accent font-medium border-t border-border cursor-pointer"
+                  onClick={() => {
+                    setShowSearchResults(false);
+                    setLocation(`/buscar?q=${encodeURIComponent(searchQuery)}`);
+                  }}
+                >
+                  Ver todos los resultados
+                </div>
               </div>
             )}
           </div>
