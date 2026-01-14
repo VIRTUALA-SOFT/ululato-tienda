@@ -243,50 +243,50 @@ export default function CourseCard({ course, className, enableVideoPreview = tru
         </div>
 
         {/* Contenido */}
-        <div className="p-4 space-y-3">
+        <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
           {/* Título */}
-          <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-[#FFD700] transition-colors">
+          <h3 className="font-semibold text-sm sm:text-base lg:text-lg line-clamp-2 group-hover:text-[#FFD700] transition-colors">
             {course.title}
           </h3>
 
           {/* Instructor */}
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             {course.instructor.name}
           </p>
 
           {/* Calificación y Estudiantes */}
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
             <div className="flex items-center gap-1">
-              <span className="font-bold text-[#FFD700]">{course.rating}</span>
+              <span className="font-bold text-[#003366] dark:text-[#FFD700]">{course.rating}</span>
               <div className="flex">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
                     className={cn(
-                      "w-4 h-4",
+                      "w-3 h-3 sm:w-4 sm:h-4",
                       i < Math.floor(course.rating)
-                        ? "fill-[#FFD700] text-[#FFD700]"
-                        : "text-muted"
+                        ? "fill-[#003366] text-[#003366] dark:fill-[#FFD700] dark:text-[#FFD700]"
+                        : "text-gray-400 dark:text-muted"
                     )}
                   />
                 ))}
               </div>
-              <span className="text-muted-foreground">({course.reviewCount.toLocaleString()})</span>
+              <span className="text-muted-foreground hidden sm:inline">({course.reviewCount.toLocaleString()})</span>
             </div>
             <div className="flex items-center gap-1 text-muted-foreground">
-              <Users className="w-4 h-4" />
+              <Users className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>{(course.studentCount / 1000).toFixed(0)}k</span>
             </div>
           </div>
 
           {/* Precio y CTA */}
           <div className="flex items-center justify-between pt-2 border-t border-border">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-[#FFD700]">
+            <div className="flex items-baseline gap-1 sm:gap-2">
+              <span className="text-lg sm:text-xl lg:text-2xl font-bold text-[#003366] dark:text-[#FFD700]">
                 ${course.price}
               </span>
               {course.originalPrice > course.price && (
-                <span className="text-sm text-muted-foreground line-through">
+                <span className="text-xs sm:text-sm text-muted-foreground line-through">
                   ${course.originalPrice}
                 </span>
               )}

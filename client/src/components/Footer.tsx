@@ -44,12 +44,12 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t border-border">
       {/* Main Footer */}
-      <div className="container py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+      <div className="container py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1">
+          <div className="col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-1">
             <Logo />
-            <p className="text-muted-foreground mt-4 text-sm max-w-xs">
+            <p className="text-muted-foreground mt-3 sm:mt-4 text-xs sm:text-sm max-w-xs">
               El tejido que nos une. Aprende, crece y conecta con una comunidad 
               global de estudiantes apasionados.
             </p>
@@ -71,8 +71,8 @@ export default function Footer() {
 
           {/* Explorar */}
           <div>
-            <h4 className="font-bold mb-4">Explorar</h4>
-            <ul className="space-y-3">
+            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">Explorar</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.explorar.map(link => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
@@ -85,8 +85,8 @@ export default function Footer() {
 
           {/* Comunidad */}
           <div>
-            <h4 className="font-bold mb-4">Comunidad</h4>
-            <ul className="space-y-3">
+            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">Comunidad</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.comunidad.map(link => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
@@ -99,8 +99,8 @@ export default function Footer() {
 
           {/* Soporte */}
           <div>
-            <h4 className="font-bold mb-4">Soporte</h4>
-            <ul className="space-y-3">
+            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">Soporte</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.soporte.map(link => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-muted-foreground hover:text-[#FFD700] transition-colors text-sm">
@@ -113,8 +113,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-bold mb-4">Contacto</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
+            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">Contacto</h4>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#FFD700]" />
                 <a href="mailto:hola@ululato.com" className="hover:text-[#FFD700] transition-colors">
@@ -136,12 +136,12 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-border">
-        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="container py-4 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
             © {currentYear} Ululato. Todos los derechos reservados.
           </p>
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Hecho con <Heart className="w-4 h-4 text-[#DC143C] fill-[#DC143C]" /> en Colombia
+          <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1">
+            Hecho con <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-[#DC143C] fill-[#DC143C]" /> en Colombia
           </p>
         </div>
       </div>

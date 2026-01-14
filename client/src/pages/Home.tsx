@@ -162,7 +162,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl space-y-6"
+              className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl space-y-3 sm:space-y-4 lg:space-y-6 px-2 sm:px-0"
             >
               <div className="badge-premium">
                 {(() => {
@@ -172,32 +172,32 @@ export default function Home() {
                 {heroSlides[currentSlide].badge}
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-bold text-white leading-tight font-display">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight font-display">
                 {heroSlides[currentSlide].title}
               </h1>
               
-              <p className="text-2xl text-white/90 font-light">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-light">
                 {heroSlides[currentSlide].subtitle}
               </p>
               
-              <p className="text-lg text-white/70">
+              <p className="text-sm sm:text-base lg:text-lg text-white/70 hidden sm:block">
                 {heroSlides[currentSlide].description}
               </p>
 
-              <div className="flex items-center gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 sm:pt-4">
                 <Link 
                   href={heroSlides[currentSlide].link}
-                  className="btn-premium text-lg px-8 py-6 rounded-xl inline-flex items-center justify-center gap-2"
+                  className="btn-premium text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 rounded-lg sm:rounded-xl inline-flex items-center justify-center gap-2"
                 >
                   {heroSlides[currentSlide].cta}
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-lg px-8 py-6 rounded-xl border-2 border-white/30 text-white hover:bg-white/10"
+                  className="text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 rounded-lg sm:rounded-xl border-2 border-white/30 text-white hover:bg-white/10"
                 >
-                  <Play className="w-5 h-5 mr-2" fill="currentColor" />
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="currentColor" />
                   Ver Demo
                 </Button>
               </div>
@@ -206,14 +206,14 @@ export default function Home() {
         </div>
 
         {/* Carousel Controls */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4">
+        <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-4">
           <button
             onClick={prevSlide}
-            className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
+            className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
           >
-            <ChevronLeft className="w-6 h-6 text-white" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
           </button>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 sm:gap-2">
             {heroSlides.map((_, index) => (
               <button
                 key={index}
@@ -272,40 +272,41 @@ export default function Home() {
                   <Globe className="w-4 h-4" />
                   Cultura Indígena
                 </div>
-                <h2 className="text-5xl font-bold font-display gradient-text">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display gradient-text">
                   Aprende Wayuunaiki
                 </h2>
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed">
                   Sumérgete en la riqueza cultural del pueblo Wayuu de La Guajira, Colombia. 
                   Aprende su idioma ancestral, comprende su cosmovisión y conecta con una de 
                   las tradiciones más vivas de América Latina.
                 </p>
-                <div className="flex flex-wrap gap-6 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 text-[#FFD700]" fill="currentColor" />
+                <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#003366] dark:text-[#FFD700]" fill="currentColor" />
                     <span className="font-bold">{wayuuCourse.rating}</span>
-                    <span className="text-muted-foreground">({wayuuCourse.reviewCount} reseñas)</span>
+                    <span className="text-muted-foreground hidden sm:inline">({wayuuCourse.reviewCount} reseñas)</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-[#FFD700]" />
-                    <span>{wayuuCourse.studentCount.toLocaleString()} estudiantes</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#003366] dark:text-[#FFD700]" />
+                    <span>{wayuuCourse.studentCount.toLocaleString()}</span>
+                    <span className="hidden sm:inline">estudiantes</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-[#FFD700]" />
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-[#003366] dark:text-[#FFD700]" />
                     <span>{wayuuCourse.duration}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pt-4">
                   <Link 
                     href={`/course/${wayuuCourse.id}`}
-                    className="btn-premium text-lg px-8 py-6 rounded-xl inline-flex items-center justify-center gap-2"
+                    className="btn-premium text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 rounded-lg sm:rounded-xl inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
                     Comenzar Aprendizaje
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-[#FFD700]">${wayuuCourse.price}</div>
-                    <div className="text-sm text-muted-foreground line-through">${wayuuCourse.originalPrice}</div>
+                  <div className="text-left sm:text-right">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#003366] dark:text-[#FFD700]">${wayuuCourse.price}</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground line-through">${wayuuCourse.originalPrice}</div>
                   </div>
                 </div>
               </div>
@@ -342,15 +343,15 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 lg:mb-16"
           >
-            <h2 className="text-4xl font-bold font-display mb-4">¿Por qué elegir Ululato?</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display mb-3 sm:mb-4">¿Por qué elegir Ululato?</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
               Más que una plataforma de cursos, somos tu compañero en el camino hacia el éxito
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {[
               {
                 icon: BookOpen,
@@ -374,13 +375,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="p-8 rounded-2xl bg-card border border-border hover:border-[#FFD700]/30 transition-all card-hover"
+                className="p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-card border border-border hover:border-[#FFD700]/30 transition-all card-hover"
               >
-                <div className="w-14 h-14 rounded-xl bg-[#FFD700]/10 flex items-center justify-center mb-6">
-                  <feature.icon className="w-7 h-7 text-[#FFD700]" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl bg-[#FFD700]/10 flex items-center justify-center mb-4 sm:mb-6">
+                  <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#003366] dark:text-[#FFD700]" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3">{feature.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -390,21 +391,21 @@ export default function Home() {
       {/* Trending Courses */}
       <section className="py-20">
         <div className="container">
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 lg:mb-12">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-5 h-5 text-[#FFD700]" />
-                <span className="text-sm font-semibold text-[#FFD700] uppercase tracking-wider">Tendencia</span>
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#003366] dark:text-[#FFD700]" />
+                <span className="text-xs sm:text-sm font-semibold text-[#003366] dark:text-[#FFD700] uppercase tracking-wider">Tendencia</span>
               </div>
-              <h2 className="text-4xl font-bold font-display">Cursos Más Populares</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold font-display">Cursos Más Populares</h2>
             </div>
-            <Button variant="outline" className="border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700]/10">
+            <Button variant="outline" className="border-[#003366] text-[#003366] dark:border-[#FFD700] dark:text-[#FFD700] hover:bg-[#003366]/10 dark:hover:bg-[#FFD700]/10 w-full sm:w-auto">
               Ver Todos
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {trendingCourses.map((course, index) => (
               <motion.div
                 key={course.id}
@@ -424,21 +425,21 @@ export default function Home() {
       <RecommendationsSection />
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-[#003366]/20 to-transparent">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#003366]/20 to-transparent">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 lg:mb-16"
           >
-            <h2 className="text-4xl font-bold font-display mb-4">Historias de Éxito</h2>
-            <p className="text-xl text-muted-foreground">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display mb-3 sm:mb-4">Historias de Éxito</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground px-4 sm:px-0">
               Lo que dicen nuestros estudiantes sobre su experiencia
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
@@ -446,20 +447,20 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="testimonial-card"
+                className="testimonial-card p-4 sm:p-6 lg:p-8"
               >
-                <p className="text-lg mb-6 pt-8 text-white/90 leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 pt-6 sm:pt-8 text-white/90 leading-relaxed">
                   {testimonial.content}
                 </p>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
-                    className="w-14 h-14 rounded-full border-2 border-[#FFD700]"
+                    className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-2 border-[#FFD700]"
                   />
                   <div>
-                    <div className="font-semibold">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    <div className="font-semibold text-sm sm:text-base">{testimonial.name}</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -469,11 +470,11 @@ export default function Home() {
       </section>
 
       {/* Categories - Premium Redesign */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-24 relative overflow-hidden">
         {/* Background Decorations */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FFD700]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#003366]/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-48 sm:w-72 lg:w-96 h-48 sm:h-72 lg:h-96 bg-[#FFD700]/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-40 sm:w-60 lg:w-80 h-40 sm:h-60 lg:h-80 bg-[#003366]/10 rounded-full blur-3xl" />
         </div>
         
         <div className="container relative z-10">
@@ -481,33 +482,33 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 lg:mb-16"
           >
             <motion.span 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#003366] dark:text-[#FFD700] text-xs sm:text-sm font-medium mb-4 sm:mb-6"
             >
-              <Target className="w-4 h-4" />
+              <Target className="w-3 h-3 sm:w-4 sm:h-4" />
               Encuentra tu camino
             </motion.span>
-            <h2 className="text-5xl md:text-6xl font-bold font-display mb-6">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6">
               Explora por{' '}
               <span className="relative">
                 <span className="relative z-10 gradient-text">Categoría</span>
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
+                <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
                   <path d="M2 10C50 2 150 2 198 10" stroke="#FFD700" strokeWidth="3" strokeLinecap="round"/>
                 </svg>
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
               Cada categoría es un universo de posibilidades. Elige la tuya y comienza tu transformación.
             </p>
           </motion.div>
 
           {/* Categories Grid - Premium Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {categories.slice(0, 4).map((category, index) => (
               <motion.div
                 key={category.slug}
@@ -518,35 +519,35 @@ export default function Home() {
                 className="group"
               >
                 <Link href={`/categoria/${category.slug}`} className="block h-full">
-                  <div className="relative h-full p-8 rounded-2xl bg-gradient-to-br from-card via-card to-card/50 border-2 border-border hover:border-[#FFD700] transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-[#FFD700]/10">
+                  <div className="relative h-full p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-card via-card to-card/50 border-2 border-border hover:border-[#FFD700] transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-[#FFD700]/10">
                     {/* Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/0 via-[#FFD700]/0 to-[#FFD700]/0 group-hover:from-[#FFD700]/5 group-hover:via-[#FFD700]/10 group-hover:to-[#FFD700]/5 transition-all duration-500" />
                     
                     {/* Icon Container */}
-                    <div className="relative mb-6">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#FFD700]/20 to-[#FFD700]/5 border border-[#FFD700]/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                        <span className="text-4xl">{category.icon}</span>
+                    <div className="relative mb-4 sm:mb-6">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#FFD700]/20 to-[#FFD700]/5 border border-[#FFD700]/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <span className="text-2xl sm:text-3xl lg:text-4xl">{category.icon}</span>
                       </div>
                       {/* Floating particles */}
-                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#FFD700]/50 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity" />
+                      <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFD700]/50 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity" />
                     </div>
                     
                     {/* Content */}
                     <div className="relative">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-[#FFD700] transition-colors duration-300">
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-1 sm:mb-2 group-hover:text-[#FFD700] transition-colors duration-300">
                         {category.name}
                       </h3>
-                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                      <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                         {category.slug === 'desarrollo' && 'Domina el código y construye el futuro digital'}
                         {category.slug === 'negocios' && 'Lidera con visión y estrategia empresarial'}
                         {category.slug === 'diseno' && 'Crea experiencias visuales memorables'}
                         {category.slug === 'marketing' && 'Conecta marcas con audiencias globales'}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-[#FFD700]">
+                        <span className="text-xs sm:text-sm font-medium text-[#003366] dark:text-[#FFD700]">
                           {category.courseCount} cursos
                         </span>
-                        <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#FFD700] group-hover:translate-x-1 transition-all duration-300" />
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-[#FFD700] group-hover:translate-x-1 transition-all duration-300" />
                       </div>
                     </div>
                   </div>
@@ -556,7 +557,7 @@ export default function Home() {
           </div>
 
           {/* Second Row - Smaller Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-6">
             {categories.slice(4).map((category, index) => (
               <motion.div
                 key={category.slug}
@@ -567,20 +568,20 @@ export default function Home() {
                 className="group"
               >
                 <Link href={`/categoria/${category.slug}`} className="block">
-                  <div className="relative p-6 rounded-2xl bg-card border-2 border-border hover:border-[#FFD700] transition-all duration-500 overflow-hidden group-hover:shadow-xl group-hover:shadow-[#FFD700]/10">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#FFD700]/20 to-[#FFD700]/5 border border-[#FFD700]/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-3xl">{category.icon}</span>
+                  <div className="relative p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-card border-2 border-border hover:border-[#FFD700] transition-all duration-500 overflow-hidden group-hover:shadow-xl group-hover:shadow-[#FFD700]/10">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br from-[#FFD700]/20 to-[#FFD700]/5 border border-[#FFD700]/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-xl sm:text-2xl lg:text-3xl">{category.icon}</span>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold group-hover:text-[#FFD700] transition-colors">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm sm:text-base lg:text-lg font-bold group-hover:text-[#FFD700] transition-colors truncate">
                           {category.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {category.courseCount} cursos disponibles
+                        <p className="text-xs sm:text-sm text-muted-foreground">
+                          {category.courseCount} cursos
                         </p>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#FFD700] group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-[#FFD700] group-hover:translate-x-1 transition-all shrink-0" />
                     </div>
                   </div>
                 </Link>
@@ -593,9 +594,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="text-center mt-8 sm:mt-12"
           >
-            <Link href="/categorias" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] font-medium hover:bg-[#FFD700]/20 transition-colors">
+            <Link href="/categorias" className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#003366] dark:text-[#FFD700] text-sm sm:text-base font-medium hover:bg-[#FFD700]/20 transition-colors">
               Ver todas las categorías
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -604,21 +605,21 @@ export default function Home() {
       </section>
 
       {/* All Courses with Filters */}
-      <section className="py-20 bg-card/30">
+      <section className="py-12 sm:py-16 lg:py-20 bg-card/30">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-6 sm:mb-8 lg:mb-12"
           >
-            <h2 className="text-4xl font-bold font-display mb-4">Todos los Cursos</h2>
-            <p className="text-xl text-muted-foreground">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display mb-2 sm:mb-4">Todos los Cursos</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground">
               Descubre nuestra colección completa de cursos
             </p>
           </motion.div>
 
-          <div className="flex gap-8">
+          <div className="flex gap-4 sm:gap-6 lg:gap-8">
             {/* Filters Sidebar */}
             <aside className="hidden lg:block w-64 flex-shrink-0">
               <CourseFilters
@@ -636,7 +637,7 @@ export default function Home() {
 
             {/* Courses Grid */}
             <div className="flex-1">
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                 {filteredCourses.map((course, index) => (
                   <motion.div
                     key={course.id}
@@ -657,37 +658,37 @@ export default function Home() {
       {/* 3D Animation Section - El tejido que nos une */}
       <section className="py-0 relative overflow-hidden bg-gradient-to-b from-[#001a33] to-[#003366]">
         <WeavingAnimation height="600px" />
-        <div className="absolute bottom-8 left-0 right-0 text-center">
-          <p className="text-white/60 text-lg">
+        <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 text-center px-4">
+          <p className="text-white/60 text-sm sm:text-base lg:text-lg">
             Una experiencia de aprendizaje que conecta culturas, personas y conocimiento
           </p>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden"
+            className="relative rounded-2xl sm:rounded-3xl overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-[#003366] to-[#001a33]" />
             <div className="absolute inset-0 bg-[url('/images/hero-success-premium.png')] bg-cover bg-center opacity-20" />
-            <div className="relative px-8 py-16 md:px-16 md:py-24 text-center">
-              <h2 className="text-4xl md:text-5xl font-bold font-display text-white mb-6">
+            <div className="relative px-4 py-10 sm:px-8 sm:py-16 md:px-16 md:py-24 text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display text-white mb-4 sm:mb-6">
                 ¿Listo para transformar tu vida?
               </h2>
-              <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
+              <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-2xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0">
                 Únete a más de 500,000 estudiantes que ya están construyendo el futuro que merecen
               </p>
               <Button
                 size="lg"
-                className="btn-premium text-lg px-10 py-6 rounded-xl"
+                className="btn-premium text-sm sm:text-base lg:text-lg px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-6 rounded-lg sm:rounded-xl w-full sm:w-auto"
               >
                 Comenzar Gratis
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Button>
             </div>
           </motion.div>

@@ -211,8 +211,15 @@
                 0 0 0 1px rgba(255, 215, 0, 0.2);
   }
   
-  /* Gradient Text */
+  /* Gradient Text - Contraste mejorado para fondos claros y oscuros */
   .gradient-text {
+    background: linear-gradient(135deg, #003366 0%, #004488 50%, #003366 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .dark .gradient-text {
     background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -324,21 +331,50 @@
   /* Testimonial Card */
   .testimonial-card {
     position: relative;
-    padding: 2rem;
+    padding: 1rem;
     background: linear-gradient(135deg, rgba(0, 51, 102, 0.3) 0%, rgba(22, 27, 34, 0.8) 100%);
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  @media (min-width: 640px) {
+    .testimonial-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .testimonial-card {
+      padding: 2rem;
+    }
   }
   
   .testimonial-card::before {
     content: '"';
     position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-    font-size: 4rem;
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 2.5rem;
     font-family: 'Playfair Display', serif;
     color: rgba(255, 215, 0, 0.3);
     line-height: 1;
+  }
+  
+  @media (min-width: 640px) {
+    .testimonial-card::before {
+      top: 0.75rem;
+      left: 1.25rem;
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .testimonial-card::before {
+      top: 1rem;
+      left: 1.5rem;
+      font-size: 4rem;
+    }
   }
   
   /* Progress Bar Premium */
@@ -356,18 +392,24 @@
     transition: width 0.5s ease;
   }
   
-  /* Badge Premium */
+  /* Badge Premium - Contraste mejorado */
   .badge-premium {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.1) 100%);
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.9) 0%, rgba(0, 51, 102, 0.8) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.5);
     border-radius: 2rem;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #FFD700;
+  }
+  
+  @media (min-width: 640px) {
+    .badge-premium {
+      font-size: 0.875rem;
+    }
   }
   
   /* Input Premium */
@@ -385,16 +427,44 @@
     outline: none;
   }
   
-  /* Stat Card */
+  /* Stat Card - Responsive y mejor contraste */
   .stat-card {
     text-align: center;
-    padding: 1.5rem;
+    padding: 0.75rem;
+  }
+  
+  @media (min-width: 640px) {
+    .stat-card {
+      padding: 1rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .stat-card {
+      padding: 1.5rem;
+    }
   }
   
   .stat-card .stat-value {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 700;
     font-family: 'Space Grotesk', sans-serif;
+    color: #003366;
+  }
+  
+  @media (min-width: 640px) {
+    .stat-card .stat-value {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .stat-card .stat-value {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .dark .stat-card .stat-value {
     background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -402,9 +472,21 @@
   }
   
   .stat-card .stat-label {
-    font-size: 0.875rem;
+    font-size: 0.7rem;
+    color: #003366;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+  
+  @media (min-width: 640px) {
+    .stat-card .stat-label {
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+  }
+  
+  .dark .stat-card .stat-label {
     color: rgba(255, 255, 255, 0.6);
-    margin-top: 0.5rem;
   }
   
   /* Section Title */
