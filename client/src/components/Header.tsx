@@ -64,21 +64,28 @@ export default function Header() {
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Link "Volviendo al Origen" + Logo */}
           <div className="flex items-center gap-4">
-            {/* Link Volviendo al Origen */}
-            <a 
-              href="https://prototipo.ululato.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-4 py-2 rounded-full border border-transparent hover:border-[#FFD700] transition-all duration-300"
-            >
-              <ArrowLeft className="w-4 h-4 text-white/70 group-hover:text-[#FFD700] transition-colors" />
-              <span 
-                className="text-xs font-light tracking-[0.15em] text-white/70 group-hover:text-[#FFD700] uppercase transition-colors"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
-              >
-                VOLVIENDO AL ORIGEN
-              </span>
-            </a>
+            {/* Link Volviendo al Origen - Responsive: solo flecha en móviles */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="https://prototipo.ululato.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full border border-transparent hover:border-[#FFD700] transition-all duration-300"
+                >
+                  <ArrowLeft className="w-4 h-4 text-white/70 group-hover:text-[#FFD700] transition-colors" />
+                  <span 
+                    className="hidden sm:inline text-xs font-light tracking-[0.15em] text-white/70 group-hover:text-[#FFD700] uppercase transition-colors"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+                  >
+                    VOLVIENDO AL ORIGEN
+                  </span>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="sm:hidden bg-card border-2 border-[#FFD700]">
+                <p>Volviendo al Origen</p>
+              </TooltipContent>
+            </Tooltip>
 
             {/* Logo */}
             <Logo />

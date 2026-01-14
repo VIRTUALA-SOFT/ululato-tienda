@@ -27,11 +27,27 @@ const saberesSizeClasses = {
 };
 
 const dividerHeightClasses = {
-  sm: 'h-5',
-  md: 'h-6',
-  lg: 'h-7',
-  xl: 'h-9',
+  sm: 'h-6',
+  md: 'h-8',
+  lg: 'h-9',
+  xl: 'h-12',
 };
+
+// Componente de línea divisoria más visible
+function Divider({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' | 'xl' }) {
+  return (
+    <div 
+      className={cn(
+        dividerHeightClasses[size],
+        "w-[2px] rounded-full"
+      )}
+      style={{
+        background: 'linear-gradient(to bottom, transparent 5%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0.7) 70%, transparent 95%)',
+        boxShadow: '0 0 6px rgba(255,255,255,0.4), 0 0 2px rgba(255,209,0,0.3)'
+      }}
+    />
+  );
+}
 
 function LogoContent({ size = 'md', className = "" }: Omit<LogoProps, 'asLink'>) {
   return (
@@ -46,15 +62,8 @@ function LogoContent({ size = 'md', className = "" }: Omit<LogoProps, 'asLink'>)
         )}
       />
       
-      {/* Línea divisoria vertical - visible */}
-      <div 
-        className={cn(dividerHeightClasses[size])}
-        style={{
-          width: '1px',
-          background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent)',
-          boxShadow: '0 0 4px rgba(255,255,255,0.3)'
-        }}
-      />
+      {/* Línea divisoria vertical */}
+      <Divider size={size} />
       
       {/* Palabra SABERES */}
       <span 
@@ -84,15 +93,8 @@ export default function Logo({ className = "", size = 'md', asLink = true }: Log
           )}
         />
         
-        {/* Línea divisoria vertical - visible */}
-        <div 
-          className={cn(dividerHeightClasses[size])}
-          style={{
-            width: '1px',
-            background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent)',
-            boxShadow: '0 0 4px rgba(255,255,255,0.3)'
-          }}
-        />
+        {/* Línea divisoria vertical */}
+        <Divider size={size} />
         
         {/* Palabra SABERES */}
         <span 
